@@ -1,0 +1,19 @@
+services:
+
+  mongo:
+    image: mongo:4.2.16
+    volumes: 
+     - ./mongo_db:/data/db 
+    env_file: 
+      - ./.mongo.env
+    ports:
+      - 27017:27017
+
+  mongo-express:
+    image: mongo-express:1.0.0-alpha
+    ports:
+      - 8081:8081
+    env_file: 
+      - ./.mongo-express.env
+    depends_on: 
+      - mongo
